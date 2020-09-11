@@ -1,5 +1,6 @@
 class FoodsController < ApplicationController
-  before_action :set_food, only: [:show, :update, :destroy]
+  before_action :authorize_request, only: [:create, :update, :destroy]
+  before_action :set_food, only: [:update, :destroy]
 
   # GET /foods
   def index
@@ -10,15 +11,18 @@ class FoodsController < ApplicationController
 
   # GET /foods/1
   def show
-    render json: @food
+    @food = Food.find(params[:id])
+
+    render json: @food, include: :flavors
   end
 
   # POST /foods
   def create
     @food = Food.new(food_params)
+    @food.user = @current_user
 
     if @food.save
-      render json: @food, status: :created, location: @food
+      render json: @food, status: :created
     else
       render json: @food.errors, status: :unprocessable_entity
     end
@@ -41,11 +45,11 @@ class FoodsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_food
-      @food = Food.find(params[:id])
+      @food = @current_user.foods.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def food_params
-      params.require(:food).permit(:name, :user_id)
+      params.require(:food).permit(:name)
     end
 end
