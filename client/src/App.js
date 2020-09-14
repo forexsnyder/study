@@ -8,6 +8,7 @@ import Login from './screens/Login';
 import Register from './screens/Register';
 
 import { loginUser, registerUser, verifyUser, removeToken } from './services/auth';
+import MainContainer from './containers/MainContainer';
 
 
 function App() {
@@ -48,20 +49,17 @@ function App() {
       handleLogout={handleLogout}
     >
       <Switch>
-
         <Route path='/login'>
           <Login
             loginSubmit={loginSubmit}
           />
         </Route>
-
         <Route path='/register'>
           <Register
             registerSubmit={registerSubmit}
           />
         </Route>
-
-        {/* <Route path='/' component={foodsContainer} /> */}
+        <Route path='/' component={MainContainer} />
       </Switch>
     </Layout>
   );
