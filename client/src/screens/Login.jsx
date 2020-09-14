@@ -19,7 +19,7 @@ export default function Login(props) {
   return (
     <form onSubmit={(e)=> {
       e.preventDefault();
-      props.loginSubmit(formData)
+      props.loginSubmit(formData);
     }}>
       <h3>Login</h3>
       <label>Username:
