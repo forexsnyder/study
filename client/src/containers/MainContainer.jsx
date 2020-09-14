@@ -4,6 +4,7 @@ import { getAllFlavors } from '../services/flavors'
 import { getAllFoods } from '../services/foods';
 import Flavors from '../screens/Flavors';
 import Foods from '../screens/Foods';
+import FoodEdit from '../screens/FoodEdit';
 
 export default function MainContainer() {
   const [flavors, setFlavors] = useState([]);
@@ -25,6 +26,9 @@ export default function MainContainer() {
 
   return (
     <Switch>
+      <Route path='/foods/:id/edit'>
+        <FoodEdit foods={foods} />
+      </Route>
       <Route path='/flavors'>
         <Flavors
           flavors={flavors}
