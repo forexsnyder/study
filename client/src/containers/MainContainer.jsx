@@ -5,6 +5,7 @@ import { getAllFoods, putFood } from '../services/foods';
 import Flavors from '../screens/Flavors';
 import Foods from '../screens/Foods';
 import FoodEdit from '../screens/FoodEdit';
+import FoodDetail from '../screens/FoodDetail';
 
 export default function MainContainer() {
   const [flavors, setFlavors] = useState([]);
@@ -37,6 +38,11 @@ export default function MainContainer() {
         <FoodEdit
           foods={foods}
           updateSubmit={updateSubmit}
+        />
+      </Route>
+      <Route path='/foods/:id'>
+        <FoodDetail
+          flavors={flavors}
         />
       </Route>
       <Route path='/flavors'>
