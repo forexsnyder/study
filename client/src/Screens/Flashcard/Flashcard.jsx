@@ -14,8 +14,9 @@ const Flashcard = (props) => {
 
     useEffect(() => {
         const fetchFlashcard = async () => {
-            const result = await api.get(`/topics/${id}/flashcards`)
-            setFlashcard(result.data.data)
+            const result = await api.get(`/topics/${id}`)
+            setFlashcard(result.data.flashcards)
+            console.log(flashcard)
              setLoaded(true)
 
         }
@@ -25,7 +26,7 @@ const Flashcard = (props) => {
     console.log(flashcard)
 
     const cardJSX = flashcard.map((card, index) =>
-    <Card id={card.id} attributes={card.attributes} key={index} />
+    <Card id={card.id} front={card.front} back={card.back} key={index} />
     
     )
  
