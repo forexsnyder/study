@@ -1,0 +1,15 @@
+.card{
+    margin:0 auto;
+    max-width:100%;
+}
+
+.welcome-title{
+    margin:0 auto;
+    text-align: center;
+
+}
+
+.flashcard-title{
+    margin: auto;
+    text-align: center;
+}

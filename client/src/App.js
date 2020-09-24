@@ -1,71 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import React from 'react';
+import { Switch, Route } from "react-router-dom"
 
-import './App.css';
+import './App.css'
 
-import Layout from './layouts/Layout';
-import Login from './screens/Login';
-import Register from './screens/Register';
-
-import { loginUser, registerUser, verifyUser, removeToken } from './services/auth';
-import MainContainer from './containers/MainContainer';
+import CUDFlashcards from "./Screens/CUDFlashcards/CUDFlashcards"
+import Welcome from "./Screens/Welcome/Welcome"
+import Landingpage from "./Screens/Landingpage/Landingpage"
+import Flashcard from "./Screens/Flashcard/Flashcard"
+import CUDTopics from "./Screens/CUDFlashcards/CUDTopics"
+import UpdateFlashcard from './Screens/Flashcard/UpdateFlashcard';
+import Comments from './Screens/Comments/Comments'
 
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
-  const history = useHistory();
-
-  useEffect(() => {
-    const handleVerify = async () => {
-      const userData = await verifyUser();
-      setCurrentUser(userData);
-      // history.push('/');
-    }
-    handleVerify();
-  }, [])
-
-  const loginSubmit = async (loginData) => {
-    const userData = await loginUser(loginData);
-    setCurrentUser(userData);
-    history.push('/');
-  }
-
-  const registerSubmit = async (registerData) => {
-    const userData = await registerUser(registerData);
-    setCurrentUser(userData);
-    history.push('/');
-  }
-
-  const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    removeToken();
-    setCurrentUser(null);
-    history.push('/');
-  }
-
+  
   return (
-    <Layout
-      currentUser={currentUser}
-      handleLogout={handleLogout}
-    >
-      <Switch>
-        <Route path='/login'>
-          <Login
-            loginSubmit={loginSubmit}
-          />
-        </Route>
-        <Route path='/register'>
-          <Register
-            registerSubmit={registerSubmit}
-          />
-        </Route>
-        <Route path='/'>
-          <MainContainer
-            currentUser={currentUser}
-          />
-        </Route>
-      </Switch>
-    </Layout>
+      <div className="form-group">
+        <Switch>
+        <Route exact path="/" component={Welcome} />
+        <Route exact path="/landingpage" component={Landingpage} />
+        <Route exact path="/topics/:id/flashcards" component={Flashcard} />
+        <Route exact path="/cudflashcards" component={CUDFlashcards} />
+        <Route exact path="/cudtopics/" component={CUDTopics} />
+        <Route exact path="/flashcards/:id" component={UpdateFlashcard} />
+        <Route exact path="/comments" component={Comments} />
+        </Switch>
+      </div>
   );
 }
 
