@@ -19,7 +19,7 @@ function App() {
         <Switch>
         <Route exact path="/" component={Welcome} />
         <Route exact path="/landingpage" component={Landingpage} />
-        <Route exact path="/topics/:id/flashcards" component={Flashcard} />
+        <Route exact path="/topics/:id" component={Flashcard} />
         <Route exact path="/cudflashcards" component={CUDFlashcards} />
         <Route exact path="/cudtopics/" component={CUDTopics} />
         <Route exact path="/flashcards/:id" component={UpdateFlashcard} />
