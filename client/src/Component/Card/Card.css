@@ -2,6 +2,7 @@
     margin:0 auto;
     text-align: center;
     padding:30px;
+    
 }
 
 .card {
@@ -10,10 +11,10 @@
     align-items: center;
     position: relative;
     border-radius: .25rem;
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .3);
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .8);
     background-color: white;
     transform-style: preserve-3d;
-    transition: 150ms;
+    transition: 300ms;
     height: 150px;
     width: 300px;
     cursor: pointer;
@@ -33,4 +34,13 @@
 
 .card .back {
     transform: rotateY(180deg);
+  }
+
+  .edit-button{
+
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .8);
+  }
+  .delete-button{
+
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .8);
   }

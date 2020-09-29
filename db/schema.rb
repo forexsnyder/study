@@ -32,25 +32,6 @@ ActiveRecord::Schema.define(version: 2020_09_24_194208) do
     t.index ["topic_id"], name: "index_flashcards_on_topic_id"
   end
 
-  create_table "flavors", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "flavors_foods", id: false, force: :cascade do |t|
-    t.bigint "food_id", null: false
-    t.bigint "flavor_id", null: false
-  end
-
-  create_table "foods", force: :cascade do |t|
-    t.string "name"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_foods_on_user_id"
-  end
-
   create_table "topics", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
