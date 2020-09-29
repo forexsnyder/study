@@ -10,6 +10,7 @@ const Flashcard = (props) => {
     const [flashcard, setFlashcard] = useState([])
     const [isLoaded, setLoaded] = useState(false)
     const { id } = useParams()
+    const [flip, setFlip]= useState(false)
     
 
     useEffect(() => {
@@ -23,20 +24,19 @@ const Flashcard = (props) => {
         fetchFlashcard()
 
     }, [id])
-    console.log(flashcard)
-
+    
     const cardJSX = flashcard.map((card, index) =>
     <Card id={card.id} front={card.front} back={card.back} key={index} />
-    
     )
- 
+
     if (!isLoaded) {
         return <h1>Loading...</h1>
     }
 
     return (
         <Layout>
-            <div>
+            <div onClick={()=> setFlip(!flip)}>
+                {flip }
                 {cardJSX}
             </div>
             <div className="button-container">
